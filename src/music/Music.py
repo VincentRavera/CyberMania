@@ -21,7 +21,9 @@ class Music(object):
         self.mix.load(self.current)
         self.isPaused = False
         self.isStopped = True
-    
+        self.isMute = self.mix.get_volume()
+
+
     def toogle(self):
         if self.isStopped:
             mixer.music.play(-1, 0.0)
@@ -33,7 +35,19 @@ class Music(object):
             else:
                 mixer.music.pause()
                 self.isPaused = True
+
+
     def stop(self):
         mixer.music.fadeout(3000)
         self.isPaused = False
         self.isStopped = True
+
+
+    def mute(self):
+        a = self.mix.get_volume()
+        if a == 0 :
+            self.mix.set_volume(self.isMute)
+        else:
+            self.isMute = self.mix.get_volume()
+            self.mix.set_volume(0)
+        
