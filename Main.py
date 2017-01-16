@@ -7,7 +7,7 @@ import pygame
 import sys
 from pygame.locals import *
 from src.music.Music import Music
-from characters.player.hero import Hero
+from src.characters.Character import Hero
 
 if __name__ == '__main__':
     pass
@@ -41,10 +41,9 @@ fontObj = pygame.font.Font('freesansbold.ttf', 32)
 textSurf = fontObj.render('Yolo world !', True, GREEN, BLUE)
 textRect = textSurf.get_rect()
 textRect.center = (700, 400)
-music = Music()
+music = Music('music/test.mp3')
 # pygame.mixer.music.play(-1, 0.0)
-params = (0, 0)
-hero = Hero(params)
+hero = Hero('img/ssamus.png')
 
 while True:
     window.fill(WHITE)
