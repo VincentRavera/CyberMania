@@ -4,6 +4,7 @@ Created on 16 janv. 2017
 @author: vince
 '''
 from pygame import mixer
+from src.contants.Constants import MUSIC_FADOUT
 
 class Music(object):
     '''
@@ -38,7 +39,7 @@ class Music(object):
 
 
     def stop(self):
-        mixer.music.fadeout(3000)
+        mixer.music.fadeout(MUSIC_FADOUT)
         self.isPaused = False
         self.isStopped = True
 
@@ -50,4 +51,7 @@ class Music(object):
         else:
             self.isMute = self.mix.get_volume()
             self.mix.set_volume(0)
-        
+    
+    def loadThis(self, string):
+        if self.current != string:
+            mixer.music.fadeout(MUSIC_FADOUT)

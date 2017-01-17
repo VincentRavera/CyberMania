@@ -17,28 +17,43 @@ class Character(object):
         Constructor
         '''
         self.nom = 'Abstract Character'
-        self.pos = np.array((50, 50))
+        self.position = np.array((50, 50))
         self.speed = np.array((0,0))
         self.sprite = SpriteSheet(fileName)
-        
-        
+
+
     def moveRight(self):
         '''
         Move's character right
         '''
-        self.pos = (self.pos[0] + 5, self.pos[1])
-        
+        self.speed[0] = self.speed[0] + 1
+        self.SriteRight()
+
+
     def moveLeft(self):
         '''
         Move's character left
         '''
-        self.pos = (self.pos[0] - 5, self.pos[1])
-        
+        self.speed[0] = self.speed[0] - 1
+        self.SpritLeft()
+
+
+    def stopMoving(self):
+        self.speed[0] = 0
+
+
     def draw(self, window):
-        window.blit(self.sprite.imageAt((0, 0, 24, 47)), self.pos)
-        
-        
-        
+        window.blit(self.sprite.imageAt((0, 0, 24, 47)), self.position)
+
+
+    def SpritLeft(self):
+        pass
+
+
+    def SriteRight(self):
+        pass
+
+
 class Hero(Character):
     '''
     classdocs
