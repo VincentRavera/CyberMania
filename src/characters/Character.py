@@ -26,7 +26,7 @@ class Character(object):
         '''
         Move's character right
         '''
-        self.speed[0] = self.speed[0] + 1
+        self.speed[0] = self.speed[0] + 5
         self.SriteRight()
 
 
@@ -34,7 +34,7 @@ class Character(object):
         '''
         Move's character left
         '''
-        self.speed[0] = self.speed[0] - 1
+        self.speed[0] = self.speed[0] - 5
         self.SpritLeft()
 
 

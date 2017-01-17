@@ -27,18 +27,14 @@ def listen(hero):
             exitGame()
         if event.type == KEYDOWN:
             if event.key == K_RIGHT:
-                print("d R")
                 hero.moveRight()
             if event.key == K_LEFT:
-                print("d L")
                 hero.moveLeft()
             if event.key == K_SPACE:
                 hero.jump()
         if event.type == KEYUP:
             if event.key == K_RIGHT:
-                print("u R")
                 hero.stopMoving()
             if event.key == K_LEFT:
-                print("u L")
                 hero.stopMoving()
         musicInputs(event)

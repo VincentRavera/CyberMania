@@ -3,7 +3,6 @@ Created on 17 janv. 2017
 
 @author: vince
 '''
-import time
 import pygame
 from threading import Thread
 from src.contants.Constants import WHITE, FPS
@@ -65,9 +64,6 @@ class PositionUpdater(object):
 
     def do(self):
         while True :
-            t0 = time.time()*1000
             for objects in self.listOfObject:
                 Maths.updatePositionOfObject(objects)
-            dt = time.time()*1000 - t0
-            if dt < ONE_SEC_2_MILI/FPS:
-                time.sleep((ONE_SEC_2_MILI/FPS-dt)/ONE_SEC_2_MILI)
+            fpsClock.tick(FPS)
