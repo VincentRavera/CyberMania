@@ -222,6 +222,10 @@ tags
 .idea/misc.xml
 .idea/modules.xml
 .idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/
+.idea/*
+.idea/**
 
 # End of https://www.gitignore.io/api/python,pycharm,eclipse,vim
 
