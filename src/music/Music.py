@@ -1,5 +1,5 @@
-from pygame import mixer
-from src.contants.Constants import MUSIC_FADOUT
+from pygame import mixer, time
+from src.contants.Constants import MUSIC_FADEOUT, ONE_SEC_2_MILI
 
 
 class Music(object):
@@ -31,7 +31,7 @@ class Music(object):
                 self.isPaused = True
 
     def stop(self):
-        mixer.music.fadeout(MUSIC_FADOUT)
+        mixer.music.fadeout(MUSIC_FADEOUT)
         self.isPaused = False
         self.isStopped = True
 
@@ -45,4 +45,5 @@ class Music(object):
     
     def load_this(self, string):
         if self.current != string:
-            mixer.music.fadeout(MUSIC_FADOUT)
+            mixer.music.fadeout(MUSIC_FADEOUT)
+            time.wait(MUSIC_FADEOUT)

@@ -1,5 +1,7 @@
 import pygame
 from threading import Thread
+
+import sys
 from src.contants.Constants import WHITE, FPS
 import src.inputs.Input as InputModule
 from src.facade import Facade
@@ -39,11 +41,9 @@ class OutputDrawer(object):
 
 class InputsListener(object):
     def __init__(self, hero):
-        print("Task::InputsListener created")
         self.hero = hero
 
     def do(self):
-        print("Task::InputsListener call")
         Facade.music.toogle()
         while True:
             InputModule.listen(self.hero)
@@ -57,4 +57,6 @@ class PositionUpdater(object):
         while True:
             for objects in self.listOfObject:
                 Maths.update_position_of_object(objects)
+                if Facade.isRunning is False:
+                    sys.exit()
             fpsClock.tick(FPS)
