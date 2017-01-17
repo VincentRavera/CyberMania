@@ -1,6 +1,6 @@
 # CyberMania
 
-A Python game cyber punk
+A Python game cyberpunk
 
 ## Goal
 

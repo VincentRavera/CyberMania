@@ -1,29 +1,22 @@
-'''
-Created on 16 janv. 2017
-
-@author: vince
-'''
 from pygame import mixer
 from src.contants.Constants import MUSIC_FADOUT
 
+
 class Music(object):
-    '''
+    """
     classdocs
-    '''
-
-
-    def __init__(self, soundFile):
-        '''
+    """
+    def __init__(self, sound_file):
+        """
         Constructor
-        '''
+        """
         mixer.init()
-        self.current = soundFile
+        self.current = sound_file
         self.mix = mixer.music
         self.mix.load(self.current)
         self.isPaused = False
         self.isStopped = True
         self.isMute = self.mix.get_volume()
-
 
     def toogle(self):
         if self.isStopped:
@@ -37,21 +30,19 @@ class Music(object):
                 mixer.music.pause()
                 self.isPaused = True
 
-
     def stop(self):
         mixer.music.fadeout(MUSIC_FADOUT)
         self.isPaused = False
         self.isStopped = True
 
-
     def mute(self):
         a = self.mix.get_volume()
-        if a == 0 :
+        if a == 0:
             self.mix.set_volume(self.isMute)
         else:
             self.isMute = self.mix.get_volume()
             self.mix.set_volume(0)
     
-    def loadThis(self, string):
+    def load_this(self, string):
         if self.current != string:
             mixer.music.fadeout(MUSIC_FADOUT)

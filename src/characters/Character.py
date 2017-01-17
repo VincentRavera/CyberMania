@@ -1,78 +1,68 @@
-'''
-Created on 16 janv. 2017
 
-@author: vince
-'''
 from src.spritesheets.SpriteSheet import SpriteSheet
 import numpy as np
 
 
 class Character(object):
-    '''
-    classdocs
-    '''
+    """
+    Typical NPC template
+    """
 
-    def __init__(self, fileName):
-        '''
+    def __init__(self, file_name):
+        """
         Constructor
-        '''
+        """
         self.nom = 'Abstract Character'
         self.position = np.array((50, 50))
-        self.speed = np.array((0,0))
-        self.sprite = SpriteSheet(fileName)
+        self.speed = np.array((0, 0))
+        self.sprite = SpriteSheet(file_name)
 
-
-    def moveRight(self):
-        '''
+    def move_right(self):
+        """
         Move's character right
-        '''
-        self.speed[0] = self.speed[0] + 5
-        self.SriteRight()
+        """
+        self.speed[0] += 5
+        self.sprite_right()
 
-
-    def moveLeft(self):
-        '''
+    def move_left(self):
+        """
         Move's character left
-        '''
-        self.speed[0] = self.speed[0] - 5
-        self.SpritLeft()
+        """
+        self.speed[0] -= 5
+        self.sprite_left()
 
-
-    def stopMoving(self):
+    def stop_moving(self):
         self.speed[0] = 0
 
-
     def draw(self, window):
-        window.blit(self.sprite.imageAt((0, 0, 24, 47)), self.position)
+        window.blit(self.sprite.image_at((0, 0, 24, 47)), self.position)
 
-
-    def SpritLeft(self):
+    def sprite_right(self):
         pass
 
-
-    def SriteRight(self):
+    def sprite_left(self):
         pass
 
 
 class Hero(Character):
-    '''
-    classdocs
-    '''
+    """
+    Player character.
+    """
 
-    def __init__(self, fileName):
-        '''
+    def __init__(self, file_name):
+        """
         Constructor
-        '''
-        Character.__init__(self, fileName)
-
+        """
+        Character.__init__(self, file_name)
 
     def jump(self):
-        '''
+        """
         Jumping method
-        '''
-        
-        
+        """
+        self.speed[1] += 5
+
     def shoot(self):
-        '''
+        """
         Shoot method
-        '''
+        """
+        self.speed[1] += 5

@@ -1,15 +1,8 @@
-'''
-Created on 17 janv. 2017
-
-@author: vince
-'''
-
-
-def updatePositionOfObject(myObject):
-    '''
+def update_position_of_object(my_object):
+    """
     Update the position of an object
-    '''
-    speed = myObject.speed
-    currentPosi = myObject.position
-    newPosition = currentPosi + speed
-    myObject.position = newPosition
+    """
+    speed = my_object.speed
+    current_position = my_object.position
+    new_position = current_position + speed
+    my_object.position = new_position

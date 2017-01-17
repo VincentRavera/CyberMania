@@ -1,40 +1,31 @@
-'''
-Created on 17 janv. 2017
-
-@author: vince
-'''
 import pygame
 from threading import Thread
 from src.contants.Constants import WHITE, FPS
-import src.inputs.Input as inputs
-from src.facade.Facade import music
+import src.inputs.Input as InputModule
+from src.facade import Facade
 from src.maths import Maths
-from src.contants.Constants import ONE_SEC_2_MILI
 from src.facade.Facade import fpsClock
 
 
 class Task(Thread):
-
     def __init__(self, job):
         Thread.__init__(self)
         self.job = job
-
 
     def run(self):
         self.job.do()
 
 
 class OutputDrawer(object):
-    def __init__(self, window, listToDraw):
+    def __init__(self, window, list_to_draw):
         # Set up the window
         pygame.display.set_caption('CyberMania')
         self.window = window
-        self.listToDraw = listToDraw
-
+        self.listToDraw = list_to_draw
 
     def do(self):
         while True:
-            try :
+            try:
                 self.window.fill(WHITE)
                 for toDraw in self.listToDraw:
                     toDraw.draw(self.window)
@@ -42,6 +33,7 @@ class OutputDrawer(object):
                 fpsClock.tick(FPS)
             except pygame.error:
                 print("pygame exited, stopping thread")
+                Facade.isRunning = False
                 break
 
 
@@ -50,20 +42,19 @@ class InputsListener(object):
         print("Task::InputsListener created")
         self.hero = hero
 
-
     def do(self):
         print("Task::InputsListener call")
-        music.toogle()
+        Facade.music.toogle()
         while True:
-            inputs.listen(self.hero)
+            InputModule.listen(self.hero)
+
 
 class PositionUpdater(object):
-    def __init__(self, listOfObject):
-        self.listOfObject = listOfObject
-
+    def __init__(self, list_of_object):
+        self.listOfObject = list_of_object
 
     def do(self):
-        while True :
+        while True:
             for objects in self.listOfObject:
-                Maths.updatePositionOfObject(objects)
+                Maths.update_position_of_object(objects)
             fpsClock.tick(FPS)

@@ -1,8 +1,3 @@
-'''
-Created on 17 janv. 2017
-
-@author: vince
-'''
 # Clock
 FPS = 60
 ONE_SEC_2_MILI = 1000.0
@@ -14,6 +9,6 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
-MUSIC_FADOUT = 3000 # time in milliseconds
+MUSIC_FADEOUT = 3000  # time in milliseconds
 
-DISPLAY_SURF = (1024, 668) # Display Size
+DISPLAY_SURF = (1024, 668)  # Display Size

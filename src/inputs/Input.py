@@ -1,21 +1,16 @@
-'''
-Created on 16 janv. 2017
-
-@author: vince
-'''
 import sys
 import pygame
 from pygame.constants import QUIT, KEYDOWN, K_RIGHT, K_LEFT, K_SPACE, K_p, KEYUP
 from src.facade.Facade import music
 
 
-def exitGame():
+def exit_game():
     pygame.mixer.music.stop()
     pygame.quit()
     sys.exit()
 
 
-def musicInputs(event):
+def music_inputs(event):
     if event.type == KEYDOWN:
         if event.key == K_p:
             music.mute()
@@ -24,17 +19,17 @@ def musicInputs(event):
 def listen(hero):
     for event in pygame.event.get():
         if event.type == QUIT:
-            exitGame()
+            exit_game()
         if event.type == KEYDOWN:
             if event.key == K_RIGHT:
-                hero.moveRight()
+                hero.move_right()
             if event.key == K_LEFT:
-                hero.moveLeft()
+                hero.move_left()
             if event.key == K_SPACE:
                 hero.jump()
         if event.type == KEYUP:
             if event.key == K_RIGHT:
-                hero.stopMoving()
+                hero.stop_moving()
             if event.key == K_LEFT:
-                hero.stopMoving()
-        musicInputs(event)
+                hero.stop_moving()
+        music_inputs(event)
