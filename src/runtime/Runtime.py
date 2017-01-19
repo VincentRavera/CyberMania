@@ -26,27 +26,23 @@ class OutputDrawer(object):
         self.listToDraw = list_to_draw
 
     def do(self):
-        while True:
-            try:
-                self.window.fill(WHITE)
-                for toDraw in self.listToDraw:
-                    toDraw.draw(self.window)
-                pygame.display.update()
-                fpsClock.tick(FPS)
-            except pygame.error:
-                print("pygame exited, stopping thread")
-                Facade.isRunning = False
-                break
+        try:
+            # self.window.fill(WHITE)
+            for toDraw in self.listToDraw:
+                toDraw.draw(self.window)
+            pygame.display.update()
+        except pygame.error:
+            print("pygame exited, stopping thread")
+            Facade.isRunning = False
 
 
 class InputsListener(object):
     def __init__(self, hero):
         self.hero = hero
+        Facade.music.toogle()
 
     def do(self):
-        Facade.music.toogle()
-        while True:
-            InputModule.listen(self.hero)
+        InputModule.listen(self.hero)
 
 
 class PositionUpdater(object):
@@ -54,9 +50,5 @@ class PositionUpdater(object):
         self.listOfObject = list_of_object
 
     def do(self):
-        while True:
-            for objects in self.listOfObject:
-                Maths.update_position_of_object(objects)
-                if Facade.isRunning is False:
-                    sys.exit()
-            fpsClock.tick(FPS)
+        for objects in self.listOfObject:
+            Maths.update_position_of_object(objects)

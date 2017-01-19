@@ -17,7 +17,6 @@ class Character(object):
         self.speed = np.array((0, 0))
         self.sprite = SpriteSheet(file_name)
         self.current_sprite = (0, 0, 24, 47)
-        self.sprite_right_list = ((0, 0, 18, 32), (18, 0, 36, 32))
 
     def move_right(self):
         """
@@ -35,7 +34,6 @@ class Character(object):
 
     def stop_moving(self):
         self.speed[0] = 0
-        self.current_sprite = self.sprite_right_list[0]
 
     def draw(self, window):
         window.blit(self.sprite.image_at(self.current_sprite), self.position)
@@ -69,9 +67,3 @@ class Hero(Character):
         Shoot method
         """
         self.speed[1] += 5
-
-    def sprite_right(self):
-        self.current_sprite = self.sprite_right_list[1]
-
-    def sprite_left(self):
-        self.current_sprite = self.sprite_right_list[1]
