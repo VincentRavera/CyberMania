@@ -29,7 +29,9 @@ while isRunning:
     runtime.join()
     positionUpdater.join()
     inputsListener.join()
+
     fpsClock.tick(FPS)
+
     runtime.run()
     positionUpdater.run()
     inputsListener.run()
