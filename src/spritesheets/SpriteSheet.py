@@ -26,3 +26,4 @@ class SpriteSheet(object):
                 colorkey = image.get_at((0, 0))
             image.set_colorkey(colorkey, pygame.RLEACCEL)
         return image
+
