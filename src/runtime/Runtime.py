@@ -27,7 +27,7 @@ class OutputDrawer(object):
 
     def do(self):
         try:
-            # self.window.fill(WHITE)
+            self.window.fill(WHITE)
             for toDraw in self.listToDraw:
                 toDraw.draw(self.window)
             pygame.display.update()

@@ -11,27 +11,27 @@ if __name__ == '__main__':
 pygame.init()
 window = pygame.display.set_mode(DISPLAY_SURF)
 
-hero = Hero('img/keney_p1_animation/Player.png')
+hero = Hero('img/keney_p1_animation/Player.png', 'img/keney_p1_animation/Player.json')
 listToDraw = list()
 listToDraw.append(hero)
 
-runtime = Task(OutputDrawer(window, listToDraw))
+drawer = Task(OutputDrawer(window, listToDraw))
 
 positionUpdater = Task(PositionUpdater(listToDraw))
 
 inputsListener = Task(InputsListener(hero))
 
-runtime.start()
+drawer.start()
 positionUpdater.start()
 inputsListener.start()
 
 while isRunning:
-    runtime.join()
+    drawer.join()
     positionUpdater.join()
     inputsListener.join()
 
     fpsClock.tick(FPS)
 
-    runtime.run()
+    drawer.run()
     positionUpdater.run()
     inputsListener.run()

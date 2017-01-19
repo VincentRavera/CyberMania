@@ -1,4 +1,4 @@
-
+from src.spritesheets.JsonReader import MovementManager
 from src.spritesheets.SpriteSheet import SpriteSheet
 import numpy as np
 
@@ -8,15 +8,14 @@ class Character(object):
     Typical NPC template
     """
 
-    def __init__(self, file_name):
+    def __init__(self, path_img, path_json):
         """
         Constructor
         """
         self.nom = 'Abstract Character'
         self.position = np.array((50, 50))
         self.speed = np.array((0, 0))
-        self.sprite = SpriteSheet(file_name)
-        self.current_sprite = (0, 0, 24, 47)
+        self.movement_manager = MovementManager(path_img=path_img, path_json=path_json)
 
     def move_right(self):
         """
@@ -36,7 +35,11 @@ class Character(object):
         self.speed[0] = 0
 
     def draw(self, window):
-        window.blit(self.sprite.image_at(self.current_sprite), self.position)
+        if self.speed[0] == 0:
+            window.blit(self.movement_manager.get_resting_image(), self.position)
+        else:
+            window.blit(self.movement_manager.get_next_image(), self.position)
+
 
     def sprite_right(self):
         pass
@@ -50,17 +53,17 @@ class Hero(Character):
     Player character.
     """
 
-    def __init__(self, file_name):
+    def __init__(self, path_img, path_json):
         """
         Constructor
         """
-        Character.__init__(self, file_name)
+        Character.__init__(self, path_img, path_json)
 
     def jump(self):
         """
         Jumping method
         """
-        self.speed[1] += 5
+        self.speed[1] -= 5
 
     def shoot(self):
         """
